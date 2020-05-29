@@ -16,7 +16,10 @@ public class TaskDbInMemory implements TaskDb{
 
     public TaskDbInMemory(){
         this.tasks = new ArrayList<>();
-        //tasks.add(new Task("Task 1", LocalDateTime.now()));
+        tasks.add(new Task("Kakken", "Ge moet gaan kakken", LocalDateTime.now()));
+        tasks.add(new Task("Pissen", "Ge moet gaan pissen", LocalDateTime.now()));
+        tasks.add(new Task("Eten", "Ge moet gaan eten", LocalDateTime.now()));
+        tasks.add(new Task("Drinken", "Ge moet gaan drinken", LocalDateTime.now()));
     }
 
     @Override
@@ -26,7 +29,17 @@ public class TaskDbInMemory implements TaskDb{
 
     @Override
     public Task getTask(UUID id) {
-        throw new NotImplementedException();
+        for (Task task: tasks){
+            if (task.getUuid().equals(id)){
+                Task res = new Task();
+                res.setTitle(task.getTitle());
+                res.setDueDate(task.getDueDate());
+                res.setDescription(task.getDescription());
+                res.setUuid(task.getUuid());
+                return res;
+            }
+        }
+        return null;
     }
 
     @Override
