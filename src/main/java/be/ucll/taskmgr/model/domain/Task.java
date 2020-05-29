@@ -21,7 +21,7 @@ public class Task {
     private LocalDateTime dueDate;
 
     public Task() {
-
+        setRandomUuid();
     }
 
     public Task(String title, LocalDateTime dueDate) {

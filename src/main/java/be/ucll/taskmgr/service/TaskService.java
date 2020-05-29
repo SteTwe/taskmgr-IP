@@ -25,4 +25,8 @@ public class TaskService {
         return taskDb.getTask(uuid);
     }
 
+    public void addTask(Task task){
+        taskDb.addTask(task);
+    }
+
 }

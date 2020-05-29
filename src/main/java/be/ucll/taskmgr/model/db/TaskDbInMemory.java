@@ -24,7 +24,7 @@ public class TaskDbInMemory implements TaskDb{
 
     @Override
     public void addTask(Task task) {
-        throw new NotImplementedException();
+        tasks.add(task);
     }
 
     @Override
