@@ -2,6 +2,7 @@ package be.ucll.taskmgr.service;
 
 import be.ucll.taskmgr.model.db.TaskDb;
 import be.ucll.taskmgr.model.db.TaskDbInMemory;
+import be.ucll.taskmgr.model.domain.Subtask;
 import be.ucll.taskmgr.model.domain.Task;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,10 @@ public class TaskService {
 
     public void editTask(Task task){
         taskDb.editTask(task);
+    }
+
+    public void addSubtask(UUID uuid, Subtask subtask){
+        taskDb.addSubTask(uuid, subtask);
     }
 
 }

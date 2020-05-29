@@ -1,5 +1,6 @@
 package be.ucll.taskmgr.model.db;
 
+import be.ucll.taskmgr.model.domain.Subtask;
 import be.ucll.taskmgr.model.domain.Task;
 
 import javax.security.auth.Subject;
@@ -11,12 +12,11 @@ public interface TaskDb {
 
     void addTask(Task task);
 
-    Task getTask(UUID id);
+    Task getTask(UUID uuid);
 
     List<Task> getAllTasks();
 
     void editTask(Task task);
 
-    //TODO change String --> Subtask
-    void addSubTask(UUID id, String subtask);
+    void addSubTask(UUID uuid, Subtask subtask);
 }

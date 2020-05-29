@@ -1,6 +1,7 @@
 package be.ucll.taskmgr.controller;
 
 
+import be.ucll.taskmgr.model.domain.Subtask;
 import be.ucll.taskmgr.model.domain.Task;
 import be.ucll.taskmgr.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,36 @@ public class TaskController {
         if (bindingResult.hasErrors()) return "editTask";
         service.editTask(task);
         return "redirect:/tasks/"+task.getUuid();
+    }
+
+
+    @GetMapping("/{id}/sub/create")
+    public String addSubtaskPage(@PathVariable("id") String id, Model model){
+        // When parameter "id" is not a valid UUID, catch Exception + set task as null.
+        // addSubtask-page will deal with null-exception
+        try {
+            Subtask subtask = new Subtask();
+            model.addAttribute("subtask", subtask);
+            Task task = service.getTask(UUID.fromString(id));
+            model.addAttribute("task", task);
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+            model.addAttribute("task", null);
+        }
+        return "addSubtask";
+    }
+
+    @PostMapping("/addSubtask")
+    public String addSubtask(@ModelAttribute Subtask subtask, BindingResult bindingResult, @RequestParam(value = "taskID") String id){
+        if (bindingResult.hasErrors()) return "addSubtask";
+        // Highly unlikely that the id-string isn't valid.
+        // However, if the string is invalid user will be sent to task overview page.
+        try {
+            service.addSubtask(UUID.fromString(id), subtask);
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+            return "taskOverview";
+        }
+        return "redirect:/tasks/" + id;
     }
 }

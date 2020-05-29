@@ -20,8 +20,23 @@
             <td th:text="${task.title}"/>
             <td th:text="${task.description}"/>
             <td th:text="${task.getDateString()}"/>
+            <td><a th:href="@{/tasks/__${task.uuid}__/sub/create}">Add subtask</a></td>
         </tr>
     </table>
+
+        <h3 th:text="'Subtasks'"/>
+        <table>
+            <tr th:each="subtask: ${task.subtasks}">
+                <td>test</td>
+                <td th:text="${subtask.toString()}"/>
+            </tr>
+            <tr>
+                <td>
+                    test
+                </td>
+            </tr>
+        </table>
+
 </div>
 </body>
 </html>

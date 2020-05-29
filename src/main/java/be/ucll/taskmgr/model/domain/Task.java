@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -17,17 +19,21 @@ public class Task {
 
     private String description;
 
+    private List<Subtask> subtasks;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dueDate;
 
     public Task() {
         setRandomUuid();
+        if (subtasks ==null) subtasks = new ArrayList<>();
     }
 
     public Task(String title, LocalDateTime dueDate) {
         setTitle(title);
         setDueDate(dueDate);
         setRandomUuid();
+        if (subtasks ==null) subtasks = new ArrayList<>();
     }
 
     public Task(String title, String description, LocalDateTime dueDate){
@@ -35,6 +41,7 @@ public class Task {
         setDueDate(dueDate);
         setDescription(description);
         setRandomUuid();
+        if (subtasks ==null) subtasks = new ArrayList<>();
     }
 
     public Task(String title, String description, LocalDateTime dueDate, UUID uuid){
@@ -42,8 +49,16 @@ public class Task {
         setDueDate(dueDate);
         setDescription(description);
         setUuid(uuid);
+        if (subtasks ==null) subtasks = new ArrayList<>();
     }
 
+    public List<Subtask> getSubtasks() {
+        return new ArrayList<>(subtasks);
+    }
+
+    public void addSubtask(Subtask subtask){
+        subtasks.add(new Subtask(subtask.getTitle(), subtask.getDescription(), subtasks.size() +1));
+    }
 
     public void setDescription(String description) {
         if (description == null || description.trim().isEmpty()) throw new IllegalArgumentException("Description cannot be empty");

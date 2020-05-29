@@ -1,5 +1,6 @@
 package be.ucll.taskmgr.model.db;
 
+import be.ucll.taskmgr.model.domain.Subtask;
 import be.ucll.taskmgr.model.domain.Task;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -28,9 +29,9 @@ public class TaskDbInMemory implements TaskDb{
     }
 
     @Override
-    public Task getTask(UUID id) {
+    public Task getTask(UUID uuid) {
         for (Task task: tasks){
-            if (task.getUuid().equals(id)){
+            if (task.getUuid().equals(uuid)){
                 Task res = new Task();
                 res.setTitle(task.getTitle());
                 res.setDueDate(task.getDueDate());
@@ -59,7 +60,11 @@ public class TaskDbInMemory implements TaskDb{
     }
 
     @Override
-    public void addSubTask(UUID id, String subtask) {
-        throw new NotImplementedException();
+    public void addSubTask(UUID uuid, Subtask subtask) {
+        for (Task task : tasks){
+            if (task.getUuid().equals(uuid)){
+                task.addSubtask(subtask);
+            }
+        }
     }
 }
