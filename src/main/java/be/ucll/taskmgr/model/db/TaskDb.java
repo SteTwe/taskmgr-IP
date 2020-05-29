@@ -15,7 +15,7 @@ public interface TaskDb {
 
     List<Task> getAllTasks();
 
-    void editTask(UUID id, String title, String description, LocalDateTime date);
+    void editTask(Task task);
 
     //TODO change String --> Subtask
     void addSubTask(UUID id, String subtask);

@@ -27,7 +27,7 @@ public class TaskController {
     @GetMapping("/{id}")
     public String getTaskDetail(@PathVariable("id") String id, Model model){
         // When parameter "id" is not a valid UUID, catch Exception + set task as null.
-        // taskDetail-page deals with null-exception and shows "Task not found"
+        // taskDetail-page will deal with null-exception
         try{
             Task task = service.getTask(UUID.fromString(id));
             model.addAttribute("task", task);
@@ -45,7 +45,7 @@ public class TaskController {
     }
 
     @PostMapping("/new")
-    public String addTask(@ModelAttribute Task task, BindingResult bindingResult){
+    public String addTask(@ModelAttribute Task task, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             return "addTask";
         }
@@ -53,5 +53,24 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editTaskPage(@PathVariable("id") String id, Model model){
+        // When parameter "id" is not a valid UUID, catch Exception + set task as null.
+        // editTask-page will deal with null-exception
+        try {
+            Task task = service.getTask(UUID.fromString(id));
+            model.addAttribute("task", task);
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+            model.addAttribute("task", null);
+        }
+        return "editTask";
+    }
 
+    @PostMapping("/edit")
+    public String editTask(@ModelAttribute Task task, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()) return "editTask";
+        service.editTask(task);
+        return "redirect:/tasks/"+task.getUuid();
+    }
 }

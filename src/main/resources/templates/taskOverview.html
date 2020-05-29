@@ -19,6 +19,7 @@
             <td th:text="${task.title}"/>
             <td th:text="${task.getDateString()}"/>
             <td><a th:href="@{/tasks/__${task.uuid}__}">Details</a></td>
+            <td><a th:href="@{/tasks/edit/__${task.uuid}__}">Edit task</a></td>
         </tr>
     </table>
 </div>

@@ -29,4 +29,8 @@ public class TaskService {
         taskDb.addTask(task);
     }
 
+    public void editTask(Task task){
+        taskDb.editTask(task);
+    }
+
 }

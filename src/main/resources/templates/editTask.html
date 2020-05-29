@@ -2,17 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add task</title>
+    <title>Edit task</title>
 </head>
 <body>
-<form th:action="@{/tasks/new}" method="post" th:object="${task}">
+<div th:if="${task == null}">
+    <p th:text="'Task not found'"/>
+</div>
+<div th:if="${!(task==null)}">
+<form th:action="@{/tasks/edit}" method="post" th:object="${task}">
     <p><label for="title">Title</label><input type="text" th:field="*{title}" name="title" id="title" required></p>
     <p th:errors="*{title}"/>
     <p><label for="description">Title</label><input type="text" th:field="*{description}" name="title" id="description" required></p>
     <p th:errors="*{description}"/>
     <p><label for="date">Title</label><input type="datetime-local" th:field="*{dueDate}" name="title" id="date" required></p>
     <p th:errors="*{dueDate}"/>
-    <p><input type="submit" id="addTask" value="Add Task"></p>
+    <p><input type="hidden" th:field="*{uuid}"></p>
+    <p><input type="submit" id="editTask" value="Edit Task"></p>
 </form>
+</div>
 </body>
 </html>

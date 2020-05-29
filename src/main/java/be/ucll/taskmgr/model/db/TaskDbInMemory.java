@@ -48,8 +48,14 @@ public class TaskDbInMemory implements TaskDb{
     }
 
     @Override
-    public void editTask(UUID id, String title, String description, LocalDateTime date) {
-        throw new NotImplementedException();
+    public void editTask(Task task) {
+        for (Task old: tasks){
+            if (old.getUuid().equals(task.getUuid())){
+                old.setTitle(task.getTitle());
+                old.setDescription(task.getDescription());
+                old.setDueDate(task.getDueDate());
+            }
+        }
     }
 
     @Override
