@@ -22,9 +22,17 @@ public class UserServiceImp implements UserService {
     public UserServiceImp(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
-        //todo create default users
+        //enable if you want to load default users
+        init();
     }
 
+    /**
+     * Create default users.
+     */
+    private void init(){
+        createUser(new User("admina", "t").createUserDto());
+        createUser(new User("user", "t").createUserDto());
+    }
 
     @Override
     public UserDto createUser(CreateUserDto userDto) {

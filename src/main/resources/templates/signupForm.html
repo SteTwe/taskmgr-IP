@@ -2,23 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Sign up</title>
+    <title th:text="#{signup}"/>
 </head>
 <body>
 <h1>Sign up</h1>
-<!--TODO fix language shit for forms-->
 <form th:method="post" th:action="@{/signup}" th:object="${user}">
     <p th:if="${!#fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
     <div>
-        <label for="username">Username:</label>
+        <label for="username" th:text="#{user}"/>
         <input type="text" th:field="*{username}" id="username">
         <p th:errors="*{username}"></p>
     </div>
     <div>
-        <label for="password">Password:</label>
+        <label for="password" th:text="#{pwd}"/>
         <input type="password" th:field="*{password}" id="password">
     </div>
-    <input type="submit" value="Submit">
+    <input type="submit" th:value="#{submit}">
 </form>
 </body>
 </html>

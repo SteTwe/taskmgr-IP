@@ -1,6 +1,7 @@
 package be.ucll.taskmgr.model.domain.entity;
 
 import be.ucll.taskmgr.model.UserRole;
+import be.ucll.taskmgr.model.domain.dto.CreateUserDto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,15 @@ public class User {
 
     private String password;
     private UserRole role;
+
+    public User(){
+
+    }
+
+    public User(String username, String  password){
+        setUsername(username);
+        setPassword(password);
+    }
 
     public int getId() {
         return id;
@@ -48,5 +58,12 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public CreateUserDto createUserDto(){
+        CreateUserDto dto = new CreateUserDto();
+        dto.setUsername(username);
+        dto.setPassword(password);
+        return dto;
     }
 }

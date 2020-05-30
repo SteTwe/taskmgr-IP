@@ -10,6 +10,7 @@ import be.ucll.taskmgr.model.domain.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +28,17 @@ public class TaskServiceImp implements TaskService {
     public TaskServiceImp(TaskRepository taskRepository, SubtaskRepository subtaskRepository){
         this.taskRepository = taskRepository;
         this.subtaskRepository = subtaskRepository;
-        //todo create default tasks
+        //enable if you want to preload tasks
+        init();
+    }
+
+    /**
+     * Pre loading some tasks
+     */
+    private void init(){
+        addTask(new Task("Task 1", "Default task 1", LocalDateTime.now()).createDto());
+        addTask(new Task("Task 2", "Default task 2", LocalDateTime.now()).createDto());
+        addTask(new Task("Task 3", "Default task 3", LocalDateTime.now()).createDto());
     }
 
 
