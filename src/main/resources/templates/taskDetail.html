@@ -5,6 +5,7 @@
     <title>Task Detail</title>
 </head>
 <body>
+<header th:insert="navbar.html"/>
 <div th:if="${task == null}">
     <p th:text="'Task not found'"/>
 </div>

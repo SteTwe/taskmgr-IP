@@ -5,6 +5,7 @@
     <title>Task Overview</title>
 </head>
 <body>
+<header th:insert="navbar.html"/>
 <div th:if="${tasks.isEmpty()}">
     <p th:text="'No tasks left to do'"/>
 </div>
