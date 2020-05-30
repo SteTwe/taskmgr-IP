@@ -1,32 +1,24 @@
-package be.ucll.taskmgr.model.domain;
+package be.ucll.taskmgr.model.domain.dto;
 
-import javax.persistence.Entity;
+import be.ucll.taskmgr.model.domain.entity.Subtask;
 
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
-@Entity
-public class Subtask {
+public class SubtaskDto {
 
     private int id;
 
+    @NotEmpty
     private String title;
 
+    @NotEmpty @Size(min=4, max = 50)
     private String description;
 
-    public Subtask() {
+    public SubtaskDto() {
 
     }
-
-    public Subtask(String title, String description){
-        setTitle(title);
-        setDescription(description);
-    }
-
-    public Subtask(String title, String description, int id){
-        setTitle(title);
-        setDescription(description);
-        setId(id);
-    }
-
 
     public void setId(int id) {
         this.id = id;
@@ -54,8 +46,8 @@ public class Subtask {
         return title;
     }
 
-    @Override
-    public String toString() {
-        return id + ". " + title +": " + description;
+    public Subtask createSubtask(){
+        return new Subtask(title, description, id);
     }
+
 }

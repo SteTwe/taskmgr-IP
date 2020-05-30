@@ -1,13 +1,12 @@
 package be.ucll.taskmgr.model.db;
 
-import be.ucll.taskmgr.model.domain.Subtask;
-import be.ucll.taskmgr.model.domain.Task;
+import be.ucll.taskmgr.model.domain.entity.Subtask;
+import be.ucll.taskmgr.model.domain.entity.Task;
 
-import javax.security.auth.Subject;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Deprecated
 public interface TaskDb {
 
     void addTask(Task task);

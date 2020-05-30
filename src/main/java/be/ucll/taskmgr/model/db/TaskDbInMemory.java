@@ -1,16 +1,14 @@
 package be.ucll.taskmgr.model.db;
 
-import be.ucll.taskmgr.model.domain.Subtask;
-import be.ucll.taskmgr.model.domain.Task;
-import org.springframework.stereotype.Repository;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import be.ucll.taskmgr.model.domain.entity.Subtask;
+import be.ucll.taskmgr.model.domain.entity.Task;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+@Deprecated
 public class TaskDbInMemory implements TaskDb{
 
     private List<Task> tasks;

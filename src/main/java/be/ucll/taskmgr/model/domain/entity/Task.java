@@ -1,24 +1,35 @@
-package be.ucll.taskmgr.model.domain;
+package be.ucll.taskmgr.model.domain.entity;
 
+import be.ucll.taskmgr.model.domain.dto.SubtaskDto;
+import be.ucll.taskmgr.model.domain.dto.TaskDto;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Entity
 public class Task {
 
+    @Id
     private UUID uuid;
 
+    @NotEmpty
     private String title;
 
+    @NotEmpty @Size(min=4, max = 50)
     private String description;
 
+    @OneToMany
     private List<Subtask> subtasks;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -52,12 +63,19 @@ public class Task {
         if (subtasks ==null) subtasks = new ArrayList<>();
     }
 
-    public List<Subtask> getSubtasks() {
-        return new ArrayList<>(subtasks);
+    public List<SubtaskDto> getSubtasks() {
+        return subtasks.stream().map( s->{
+            SubtaskDto dto = new SubtaskDto();
+            dto.setDescription(s.getDescription());
+            dto.setId(s.getId());
+            dto.setTitle(s.getTitle());
+            return dto;
+        }
+        ).collect(Collectors.toList());
     }
 
     public void addSubtask(Subtask subtask){
-        subtasks.add(new Subtask(subtask.getTitle(), subtask.getDescription(), subtasks.size() +1));
+        subtasks.add(subtask);
     }
 
     public void setDescription(String description) {
@@ -102,6 +120,16 @@ public class Task {
     public String getDateString() {
         DateTimeFormatter dTF = DateTimeFormatter.ofPattern("MMMM dd yyyy 'at' HH:mm");
         return dTF.format(dueDate);
+    }
+
+    public TaskDto createDto(){
+        TaskDto dto = new TaskDto();
+        dto.setTitle(title);
+        dto.setDescription(description);
+        dto.setDueDate(dueDate);
+        dto.setUuid(uuid);
+        dto.setSubtasks(getSubtasks());
+        return dto;
     }
 
     @Override

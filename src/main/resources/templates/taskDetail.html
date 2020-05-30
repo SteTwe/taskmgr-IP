@@ -23,20 +23,19 @@
             <td><a th:href="@{/tasks/__${task.uuid}__/sub/create}">Add subtask</a></td>
         </tr>
     </table>
-
+    <div th:if="${!task.getSubtasks().isEmpty()}">
         <h3 th:text="'Subtasks'"/>
         <table>
-            <tr th:each="subtask: ${task.subtasks}">
-                <td>test</td>
-                <td th:text="${subtask.toString()}"/>
-            </tr>
             <tr>
-                <td>
-                    test
-                </td>
+                <th th:text="'Title'"/>
+                <th th:text="'Description'"/>
+            </tr>
+            <tr th:each="subtask: ${task.getSubtasks()}">
+                <td th:text="${subtask.title}"/>
+                <td th:text="${subtask.description}"/>
             </tr>
         </table>
-
+    </div>
 </div>
 </body>
 </html>
