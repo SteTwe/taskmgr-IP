@@ -2,28 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Task Overview</title>
+    <title th:text="#{overview}"/>
 </head>
 <body>
 <header th:insert="navbar.html"/>
 <div th:if="${tasks.isEmpty()}">
-    <p th:text="'No tasks left to do'"/>
+    <p th:text="#{noTask}"/>
 </div>
 <div th:if="${!tasks.isEmpty()}">
-    <h2 th:text="'Task overview'"/>
+    <h2 th:text="#{overview}"/>
     <table>
         <tr>
-            <th th:text="'Title'"/>
-            <th th:text="'Due Date'"/>
+            <th th:text="#{title}"/>
+            <th th:text="#{due}"/>
         </tr>
         <tr th:each="task: ${tasks}">
             <td th:text="${task.title}"/>
             <td th:text="${task.getDateString()}"/>
-            <td><a th:href="@{/tasks/__${task.uuid}__}">Details</a></td>
-            <td><a th:href="@{/tasks/edit/__${task.uuid}__}">Edit task</a></td>
+            <td><a th:href="@{/tasks/__${task.uuid}__}" th:text="#{det}"/></td>
+            <td><a th:href="@{/tasks/edit/__${task.uuid}__}" th:text="#{edit}"/></td>
         </tr>
     </table>
 </div>
-<a th:href="@{/tasks/new}">Add new task</a>
+<a th:href="@{/tasks/new}"th:text="#{newTask}"/>
+<div th:insert="lang.html"/>
 </body>
 </html>

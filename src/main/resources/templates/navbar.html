@@ -2,9 +2,10 @@
 
 <nav>
     <ul>
-        <li class="active"><a th:href="@{/}">Home</a></li>
-        <li class="nav-link"><a th:href="@{/tasks}">Task Overview</a></li>
-        <li class="nav-link"><a th:href="@{/tasks/new}">New task</a></li>
+        <!-- TODO check if you can make active link work -->
+        <li class="active"><a th:href="@{/}" th:text="#{home}"/></li>
+        <li class="nav-link"><a th:href="@{/tasks}" th:text="#{overview}"/></li>
+        <li class="nav-link"><a th:href="@{/tasks/new}" th:text="#{newTask}"/></li>
     </ul>
 </nav>
 </html>

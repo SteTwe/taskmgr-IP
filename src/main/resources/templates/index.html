@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title th:text="#{home}"/>
 </head>
 <body>
 <header th:insert="navbar.html"/>
 <main>
-    <h2 th:text="'Home'"/>
-    <p th:text="'Welcome on the taskmanager'"/>
+    <h2 th:text="#{home}"/>
+    <p th:text="#{welcome}"/>
 </main>
+<div th:insert="lang.html"/>
 </body>
 </html>

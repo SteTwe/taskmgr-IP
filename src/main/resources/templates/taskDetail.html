@@ -2,34 +2,34 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Task Detail</title>
+    <title th:text="#{det}"/>
 </head>
 <body>
 <header th:insert="navbar.html"/>
 <div th:if="${task == null}">
-    <p th:text="'Task not found'"/>
+    <p th:text="#{taskNF}"/>
 </div>
 <div th:if="${!(task == null)}">
-    <h2 th:text="'Task detail'"/>
+    <h2 th:text="#{det}"/>
     <table>
         <tr>
-            <th th:text="'Title'"/>
-            <th th:text="'Description'"/>
-            <th th:text="'Due Date'"/>
+            <th th:text="#{title}"/>
+            <th th:text="#{desc}"/>
+            <th th:text="#{due}"/>
         </tr>
         <tr>
             <td th:text="${task.title}"/>
             <td th:text="${task.description}"/>
             <td th:text="${task.getDateString()}"/>
-            <td><a th:href="@{/tasks/__${task.uuid}__/sub/create}">Add subtask</a></td>
+            <td><a th:href="@{/tasks/__${task.uuid}__/sub/create}" th:text="#{newSub}"/></td>
         </tr>
     </table>
     <div th:if="${!task.getSubtasks().isEmpty()}">
-        <h3 th:text="'Subtasks'"/>
+        <h3 th:text="#{subtask}"/>
         <table>
             <tr>
-                <th th:text="'Title'"/>
-                <th th:text="'Description'"/>
+                <th th:text="#{title}"/>
+                <th th:text="#{desc}"/>
             </tr>
             <tr th:each="subtask: ${task.getSubtasks()}">
                 <td th:text="${subtask.title}"/>
@@ -38,5 +38,6 @@
         </table>
     </div>
 </div>
+<div th:insert="lang.html"/>
 </body>
 </html>

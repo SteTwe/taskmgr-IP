@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h4 th:text="#{sel_lang}"/>
+<nav>
+    <ul><!-- TODO check if you can make active lang work -->
+        <li class="active"><a href="?lang=en" th:text="#{en}"/></li>
+        <li class="nav-link"><a href="?lang=nl" th:text="#{nl}"/></li>
+    </ul>
+</nav>
+</html>
