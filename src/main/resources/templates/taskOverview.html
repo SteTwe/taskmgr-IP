@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{overview}"/>
@@ -20,11 +20,10 @@
             <td th:text="${task.title}"/>
             <td th:text="${task.getDateString()}"/>
             <td><a th:href="@{/tasks/__${task.uuid}__}" th:text="#{det}"/></td>
-            <td><a th:href="@{/tasks/edit/__${task.uuid}__}" th:text="#{edit}"/></td>
+            <td><a sec:authorize-url="/tasks/edit/{id}" th:href="@{/tasks/edit/__${task.uuid}__}" th:text="#{edit}"/></td>
         </tr>
     </table>
 </div>
-<a th:href="@{/tasks/new}"th:text="#{newTask}"/>
 <div th:insert="lang.html"/>
 </body>
 </html>

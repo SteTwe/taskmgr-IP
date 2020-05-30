@@ -1,12 +1,12 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <nav>
     <ul>
         <!-- TODO check if you can make active link work -->
         <li class="active"><a th:href="@{/}" th:text="#{home}"/></li>
         <li class="nav-link"><a th:href="@{/tasks}" th:text="#{overview}"/></li>
-        <li class="nav-link"><a th:href="@{/tasks/new}" th:text="#{newTask}"/></li>
-        <li class="nav-link"><form th:action="@{/logout}" method="post"><input type="submit" th:value="#{logout}"></form></li>
+        <li class="nav-link" sec:authorize-url="/tasks/new"><a th:href="@{/tasks/new}" th:text="#{newTask}"/></li>
+        <form th:action="@{/logout}" method="post"><input type="submit" th:value="#{logout}"></form>
     </ul>
 </nav>
 </html>

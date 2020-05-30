@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{det}"/>
@@ -21,8 +21,7 @@
             <td th:text="${task.title}"/>
             <td th:text="${task.description}"/>
             <td th:text="${task.getDateString()}"/>
-            <!--todo validate link (only show for admin) see demo heads.html-->
-            <td><a th:href="@{/tasks/__${task.uuid}__/sub/create}" th:text="#{newSub}"/></td>
+            <td><a sec:authorize-url="/tasks/{id}/sub/create" th:href="@{/tasks/__${task.uuid}__/sub/create}" th:text="#{newSub}"/></td>
         </tr>
     </table>
     <div th:if="${!task.getSubtasks().isEmpty()}">
