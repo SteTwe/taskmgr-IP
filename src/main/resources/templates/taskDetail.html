@@ -21,6 +21,7 @@
             <td th:text="${task.title}"/>
             <td th:text="${task.description}"/>
             <td th:text="${task.getDateString()}"/>
+            <!--todo validate link (only show for admin) see demo heads.html-->
             <td><a th:href="@{/tasks/__${task.uuid}__/sub/create}" th:text="#{newSub}"/></td>
         </tr>
     </table>

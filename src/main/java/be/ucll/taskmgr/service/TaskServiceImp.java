@@ -27,6 +27,7 @@ public class TaskServiceImp implements TaskService {
     public TaskServiceImp(TaskRepository taskRepository, SubtaskRepository subtaskRepository){
         this.taskRepository = taskRepository;
         this.subtaskRepository = subtaskRepository;
+        //todo create default tasks
     }
 
 

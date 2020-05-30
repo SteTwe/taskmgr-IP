@@ -6,6 +6,7 @@
         <li class="active"><a th:href="@{/}" th:text="#{home}"/></li>
         <li class="nav-link"><a th:href="@{/tasks}" th:text="#{overview}"/></li>
         <li class="nav-link"><a th:href="@{/tasks/new}" th:text="#{newTask}"/></li>
+        <li class="nav-link"><form th:action="@{/logout}" method="post"><input type="submit" th:value="#{logout}"></form></li>
     </ul>
 </nav>
 </html>
