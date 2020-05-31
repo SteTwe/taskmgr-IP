@@ -24,7 +24,7 @@ public class UserTest {
         setup();
 
         user.setId(2);
-        assertEquals(2, user.getId());
+        assertEquals(3, user.getId());
     }
 
     @Test
