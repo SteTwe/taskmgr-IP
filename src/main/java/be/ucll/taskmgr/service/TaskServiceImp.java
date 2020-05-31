@@ -87,4 +87,8 @@ public class TaskServiceImp implements TaskService {
         } else throw new IllegalArgumentException("UUID not found");
     }
 
+    @Override
+    public void deleteTasks() {
+        taskRepository.deleteAll();
+    }
 }

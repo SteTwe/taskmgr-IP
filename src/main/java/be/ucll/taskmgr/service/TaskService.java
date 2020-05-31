@@ -13,7 +13,7 @@ public interface TaskService {
     TaskDto getTaskDto(UUID uuid);
     void editTask(TaskDto dto);
     void addSubtask(UUID uuid, SubtaskDto dto);
-
+    void deleteTasks();
 
 
 }
