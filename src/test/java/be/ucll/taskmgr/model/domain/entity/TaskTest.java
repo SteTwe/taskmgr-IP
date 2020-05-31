@@ -59,7 +59,7 @@ public class TaskTest {
     @Test
     public void addSubtaskTest(){
         setup();
-        Subtask sub = new Subtask("Title", "Description");
+        Subtask sub = new Subtask();
 
         task.addSubtask(sub);
 
