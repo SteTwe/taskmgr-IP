@@ -1,24 +1,27 @@
-package be.ucll.taskmgr.model.domain.entity;
+package be.ucll.taskmgr.model.domain.dto;
 
+import be.ucll.taskmgr.model.domain.entity.Task;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class TaskTest {
+public class TaskDtoTest {
 
-    private Task task;
+    private TaskDto task;
+
     private UUID uuid = UUID.randomUUID();
     private LocalDateTime date = LocalDateTime.now();
 
-    private void setup(){
-        task = new Task();
-    }
 
+    private void setup(){
+        task = new TaskDto();
+    }
 
     @Test
     public void idTest(){
@@ -43,29 +46,5 @@ public class TaskTest {
         task.setDescription("description");
         assertEquals("description", task.getDescription());
     }
-
-    @Test
-    public void taskTest(){
-        task = new Task("Title", "Description", date, uuid);
-
-        assertNotNull(task);
-        assertEquals("Title", task.getTitle());
-        assertEquals("Description", task.getDescription());
-        assertEquals(date, task.getDueDate());
-        assertEquals(uuid, task.getUuid());
-    }
-
-
-    @Test
-    public void addSubtaskTest(){
-        setup();
-        Subtask sub = new Subtask();
-
-        task.addSubtask(sub);
-
-        assertNotNull(task.getSubtasks());
-        assertNotEquals(0, task.getSubtasks().size());
-    }
-
 
 }
